@@ -2,6 +2,12 @@ body {
     overflow: hidden;
 }
 
+h1 {
+    color: #eb3f4a;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
 #canvas1 {
     position: absolute;
     /* border: 2px solid black; */
