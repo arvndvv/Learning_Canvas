@@ -35,7 +35,9 @@ function animate() {
     //we need to clear canvas each time
     //ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-
+    if (number > 500) {
+        return;
+    }
     drawFlower();
     requestAnimationFrame(animate);
 }
