@@ -4,7 +4,9 @@ const { innerWidth, innerHeight } = window;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 let particlesArray = [];
-const numberOfParticles = Math.floor(Math.random() * 2000) + 500;
+const numberOfParticles = 1000;
+
+let fade = 0.01;
 
 //measure title element
 let titleElement = document.querySelector("#title");
@@ -31,9 +33,11 @@ class Particle {
     }
     update() {
 
+        // fade = 0.01;
         //each frame
         if (this.y > canvas.height) {
             // when particle reach bottom
+            // fade += 0.0001;
             this.size = Math.random() * 15 + 5;
             this.lightness = (Math.floor(Math.random() * 16) + 85) + "%";
             // this.angle = Math.floor(Math.random() * 90) + 20;
@@ -84,8 +88,8 @@ function init() {
 init();
 
 function animate() {
-    let fade = 0;
-    ctx.fillStyle = 'rgba(234, 70, 47, 0.01)';
+    ctx.fillStyle = 'rgba(234, 70, 47,' +
+        fade + ')';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particlesArray.length; i++) {
         particlesArray[i].update();
