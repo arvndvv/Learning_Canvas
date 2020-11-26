@@ -4,7 +4,7 @@ const { innerWidth, innerHeight } = window;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 let particlesArray = [];
-const numberOfParticles = 300;
+const numberOfParticles = Math.floor(Math.random() * 2000) + 500;
 
 //measure title element
 let titleElement = document.querySelector("#title");
@@ -13,27 +13,36 @@ let title = {
     x: titleMeasure.left,
     y: titleMeasure.top,
     width: titleMeasure.width,
-    height: 10
+    height: 5
 }
 
 
 class Particle {
-    constructor(x, y) {
+    constructor(x, y, h) {
+        this.huefill = 200;
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 15 + 2;
-        this.weight = Math.random() * 1 + 2; // weight increase== speed of fall increase
-        this.directionX = -2; //direction of particle in x axis
+        this.angle = Math.floor(Math.random() * 90) + 20;
+        this.lightness = (Math.floor(Math.random() * 16) + 85) + "%";
+        this.size = Math.random() * 15 + 5;
+        this.weight = Math.random() * 5 + 2; // weight increase== speed of fall increase
+        this.directionX = Math.sin(this.angle); //direction of particle in x axis
         // this.directionY=1;
     }
     update() {
+
         //each frame
         if (this.y > canvas.height) {
             // when particle reach bottom
-            this.size = Math.random() * 5 + 2;
+            this.size = Math.random() * 15 + 5;
+            this.lightness = (Math.floor(Math.random() * 16) + 85) + "%";
+            // this.angle = Math.floor(Math.random() * 90) + 20;
+
             this.y = 0 - this.size;
             this.weight = Math.random() * 1 + 2;
             this.x = Math.random() * canvas.width * 1.6;
+            //color change
+            this.huefill = 200;
         }
 
 
@@ -42,18 +51,19 @@ class Particle {
         this.x += this.directionX
 
         //collision detection between particle and title
-        if (this.x < title.x + title.width &&
-            this.x + this.size > title.x &&
+        if (this.x - this.size < title.x + title.width && //checks if particle is within right side of title
+            this.x + this.size > title.x && // checks if particle is within left side of title
             this.y < title.y + title.height &&
             this.y + this.size > title.y) {
 
-            this.y -= 3;
-            this.weight *= -0.3;
+            this.y -= 4;
+            this.weight *= -0.4;
         }
 
     }
     draw() {
-        ctx.fillStyle = "white";
+        // ctx.fillStyle = "white";
+        ctx.fillStyle = "hsl(" + this.huefill + ",100%," + this.lightness + ")";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
