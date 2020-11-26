@@ -1,0 +1,15 @@
+a {
+    text-decoration: none;
+    padding: 1em 2em;
+    background: slateblue;
+    color: snow;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    transition: 400ms;
+    text-transform: capitalize;
+}
+
+a:hover {
+    background: steelblue;
+}
