@@ -4,7 +4,7 @@ const { innerWidth, innerHeight } = window;
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 let particlesArray = [];
-const numberOfParticles = 1000;
+const numberOfParticles = 1500;
 
 let fade = 0.01;
 
@@ -68,10 +68,13 @@ class Particle {
     draw() {
         // ctx.fillStyle = "white";
         ctx.fillStyle = "hsl(" + this.huefill + ",100%," + this.lightness + ")";
+        // ctx.shadowColor = '#eeeeff';
+        // ctx.shadowBlur = 5;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.closePath();
         ctx.fill();
+        // ctx.shasdowBlur = 0;
     }
 }
 
