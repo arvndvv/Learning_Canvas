@@ -1,0 +1,58 @@
+.container {
+    width: 100vw;
+    position: relative;
+    display: flex;
+    height: 100vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+button {
+    padding: 1em 2em;
+    border: none;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: bolder;
+    border-radius: 10px;
+    background: transparent;
+    outline: none;
+    color: whitesmoke;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    position: relative;
+}
+
+button::before {
+    content: "";
+    width: 100%;
+    background: black;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+}
+
+button:hover {
+    animation: squish 0.5s;
+}
+
+button:hover::before {
+    background: tomato;
+    filter: url('#wave');
+}
+
+@keyframes squish {
+    0% {
+        transform: scaleY(1);
+    }
+    60% {
+        transform: scaleY(1.5);
+    }
+    80% {
+        transform: scaleY(0.9);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
